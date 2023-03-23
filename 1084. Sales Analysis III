@@ -67,10 +67,10 @@ The product with id 3 was sold after spring 2019.
 We return only product 1 as it is the product that was only sold in the spring of 2019.
 
 # Write your MySQL query statement below
-select s.product_id, p.product_name 
-from product p , sales s 
-where p.product_id = s.product_id 
+select s.product_id, p.product_name
+from sales s, product p
+where s.product_id = p.product_id
 group by s.product_id, p.product_name
-having max(s.sale_date) between '2019-01-01' and '2019-03-31';
+having min(s.sale_date) >= '2019-01-01' AND max(s.sale_date) <= '2019-03-31';
 
 # 还不知道为什么要用max去筛选，以及如何筛选only product between date
